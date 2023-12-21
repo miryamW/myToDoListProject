@@ -1,28 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj": {}
+    "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj": {}
   },
   "projects": {
-    "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj": {
+    "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj",
+        "projectUniqueName": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
         "projectName": "myToDoList",
-        "projectPath": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj",
-        "packagesPath": "C:\\Users\\huser\\.nuget\\packages\\",
-        "outputPath": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\obj\\",
+        "projectPath": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\huser\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -42,8 +42,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23455.8\\RuntimeIdentifierGraph.json"
         }
       }
     }
