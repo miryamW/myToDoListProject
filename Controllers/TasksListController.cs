@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using myToDoList.Models;
-using myToDoList.Services;
+using myToDoList.Interfaces;
 
 namespace myToDoList.Controllers
 {
@@ -13,7 +13,11 @@ namespace myToDoList.Controllers
     [Route("[controller]")]
     public class TaskListController : ControllerBase
     {
-      
+        ITasksListService TasksListService;
+          public TaskListController(ITasksListService TasksListService)
+        {
+            this.TasksListService = TasksListService;
+        }
         [HttpGet]
         public ActionResult<List<myToDoList.Models.Task>> Get()
         {
