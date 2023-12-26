@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj": {}
+    "Z:\\B\\וייל מרים\\CORE\\weather\\weather.csproj": {}
   },
   "projects": {
-    "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj": {
+    "Z:\\B\\וייל מרים\\CORE\\weather\\weather.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj",
-        "projectName": "myToDoList",
-        "projectPath": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\myToDoList.csproj",
+        "projectUniqueName": "Z:\\B\\וייל מרים\\CORE\\weather\\weather.csproj",
+        "projectName": "weather",
+        "projectPath": "Z:\\B\\וייל מרים\\CORE\\weather\\weather.csproj",
         "packagesPath": "C:\\Users\\huser\\.nuget\\packages\\",
-        "outputPath": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\obj\\",
+        "outputPath": "Z:\\B\\וייל מרים\\CORE\\weather\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

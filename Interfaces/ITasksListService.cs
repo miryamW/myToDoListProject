@@ -9,16 +9,17 @@ using myToDoList.Services;
 
 namespace myToDoList.Interfaces
 {
-    public static class ITasksListService
+    public  interface ITasksListService
     {
-     public static List<myToDoList.Models.Task> GetAll();
+       List<myToDoList.Models.Task> GetAll();
      
-     public static myToDoList.Models.Task GetById(int id);
+       myToDoList.Models.Task GetById(int id);
      
-     public static int Add(myToDoList.Models.Task newTask);
+       int Add(myToDoList.Models.Task newTask);
 
-     public static bool Update(int id, myToDoList.Models.Task newTask);
+       bool Update(int id, myToDoList.Models.Task newTask);
    
-     public static bool Delete(int id);
+       bool Delete(int id);
+      
     }
 }

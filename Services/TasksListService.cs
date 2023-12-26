@@ -2,22 +2,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using myToDoList.Models;
 using myToDoList.Interfaces;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 
 namespace myToDoList.Services
 {
-    public class TasksListService:ITasksListService;
+    public class TasksListService:ITasksListService
     {
        List<myToDoList.Models.Task> tasksList{ get; }
        private string fileName = "Tasks.json";
 
-        public TasksListService()
+        public TasksListService(IWebHostEnvinronment webHost)
         {
-            public PizzaService(IWebHostEnvinronment webHost)
-            {
+             
                 this.fileName = Path.Combine(webHost.ContentRootPath, "Data", "Tasks.json");
                 using (var jsonFile = File.OpenText(fileName))
                 {
@@ -27,20 +30,24 @@ namespace myToDoList.Services
                         PropertyNameCaseInsensitive = true
                     });
                 }
-            }
+                // tasksList = new List<myToDoList.Models.Task>
+                // {
+                //     new myToDoList.Models.Task{Id = 1, Description = "H.W", IsDone = false}
+                // };
+            
         }
     
         private void saveToFile()
         {
             File.WriteAllText(fileName, JsonSerializer.Serialize(Task));
         }
-        public  List<myToDoList.Models.Task> GetAll()=> tasksList;
+        public List<myToDoList.Models.Task> GetAll()=> tasksList;
         
         public  myToDoList.Models.Task GetById(int id)
         {
             return tasksList.FirstOrDefault(t=>t.Id==id);
         }
-        public static int Add(myToDoList.Models.Task newTask)
+        public int Add(myToDoList.Models.Task newTask)
         {
             if (tasksList.Count == 0)
             {
@@ -54,7 +61,7 @@ namespace myToDoList.Services
             saveToFile();
             return newTask.Id;
         }
-        public static bool Update(int id, myToDoList.Models.Task newTask)
+        public bool Update(int id, myToDoList.Models.Task newTask)
         {
             if (id != newTask.Id)
                 return false;
@@ -68,7 +75,7 @@ namespace myToDoList.Services
             saveToFile();
             return true;
         }  
-        public static bool Delete(int id)
+        public bool Delete(int id)
         {
             var existingTask = GetById(id);
             if (existingTask == null )

@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "Z:\\B\\וייל מרים\\CORE\\myToDoList\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.myToDoList.props",
+      "PackagePath": "build\\myToDoList.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.myToDoList.props",
+      "PackagePath": "buildMultiTargeting\\myToDoList.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.myToDoList.props",
+      "PackagePath": "buildTransitive\\myToDoList.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.myToDoList.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
