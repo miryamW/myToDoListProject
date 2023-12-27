@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using myToDoList.Models;
-using myToDoList.Services;
+using Task =myToDoList.Models.Task;
+using myToDoList.Interfaces;
 
 namespace myToDoList.Controllers
 {
@@ -13,14 +13,18 @@ namespace myToDoList.Controllers
     [Route("[controller]")]
     public class TaskListController : ControllerBase
     {
-      
+        ITasksListService TasksListService;
+          public TaskListController(ITasksListService TasksListService)
+        {
+            this.TasksListService = TasksListService;
+        }
         [HttpGet]
-        public ActionResult<List<myToDoList.Models.Task>> Get()
+        public ActionResult<List<Task>> Get()
         {
            return TasksListService.GetAll();
         }
         [HttpGet("{id}")]
-         public ActionResult<myToDoList.Models.Task> Get(int id)
+         public ActionResult<Task> Get(int id)
         {
             var task = TasksListService.GetById(id);
             if(task==null)
@@ -28,14 +32,14 @@ namespace myToDoList.Controllers
             return task;   
         }
         [HttpPost]
-          public ActionResult<int> Post(myToDoList.Models.Task task)
+          public ActionResult<int> Post(Task task)
         {
             int newId =  TasksListService.Add(task);
             return CreatedAtAction("Post", 
             new {id = newId}, TasksListService.GetById(newId)); 
         }
         [HttpPut]
-        public ActionResult<myToDoList.Models.Task> Put(int id,myToDoList.Models.Task task)
+        public ActionResult<Task> Put(int id, Task task)
         {
              var result = TasksListService.Update(id, task);
             if (!result)
