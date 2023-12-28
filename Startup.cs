@@ -45,11 +45,13 @@ namespace myToDoList
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
+           // app.UseDefaultFiles();
+            app.UseStaticFiles();
+            app.UseAuthorization();
+           // app.MapControllers();
+         //   app.Run();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
