@@ -1,5 +1,5 @@
 const uri = '/TaskList';
-let tasksList = [];
+let tasks = [];
 
 function getItems() {
     fetch(uri)
@@ -9,11 +9,11 @@ function getItems() {
 }
 
 function addItem() {
-    const addDescriptionTextbox = document.getElementById('add-description');
+    const addNameTextbox = document.getElementById('add-name');
 
     const item = {
-        isDone: false,
-        descriotion: addDescriptionTextbox.value.trim()
+        IsDone: false,
+        Description: addNameTextbox.value.trim()
     };
 
     fetch(uri, {
@@ -27,7 +27,7 @@ function addItem() {
         .then(response => response.json())
         .then(() => {
             getItems();
-            addDescriptionTextbox.value = '';
+            addNameTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
 }
@@ -41,11 +41,11 @@ function deleteItem(id) {
 }
 
 function displayEditForm(id) {
-    const item = tasksList.find(item => item.id === id);
+    const item = tasks.find(item => item.id === id);
 
-    document.getElementById('edit-description').value = item.description;
+    document.getElementById('edit-name').value = item.name;
     document.getElementById('edit-id').value = item.id;
-    document.getElementById('edit-isDone').checked = item.isDone;
+    document.getElementById('edit-IsDo').checked = item.IsDo;
     document.getElementById('editForm').style.display = 'block';
 }
 
@@ -53,8 +53,8 @@ function updateItem() {
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
-        isDone: document.getElementById('edit-isDone').checked,
-        description: document.getElementById('edit-description').value.trim()
+        IsDone: document.getElementById('edit-IsDo').checked,
+        Description: document.getElementById('edit-name').value.trim()
     };
 
     fetch(`${uri}/${itemId}`, {
@@ -78,13 +78,13 @@ function closeInput() {
 }
 
 function _displayCount(itemCount) {
-    const description = (itemCount === 1) ? 'Task' : 'TasksLIst';
+    const name = (itemCount === 1) ? 'pizza' : 'Task kinds';
 
-    document.getElementById('counter').innerText = `${itemCount} ${description}`;
+    document.getElementById('counter').innerText = `${itemCount} ${name}`;
 }
 
 function _displayItems(data) {
-    const tBody = document.getElementById('Tasks');
+    const tBody = document.getElementById('tasks');
     tBody.innerHTML = '';
 
     _displayCount(data.length);
@@ -92,10 +92,10 @@ function _displayItems(data) {
     const button = document.createElement('button');
 
     data.forEach(item => {
-        let isDoneCheckbox = document.createElement('input');
-        isDoneCheckbox.type = 'checkbox';
-        isDoneCheckbox.disabled = true;
-        isDoneCheckbox.checked = item.isDone;
+        let IsDoCheckbox = document.createElement('input');
+        IsDoCheckbox.type = 'checkbox';
+        IsDoCheckbox.disabled = true;
+        IsDoCheckbox.checked = item.isDone;
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
@@ -108,10 +108,10 @@ function _displayItems(data) {
         let tr = tBody.insertRow();
 
         let td1 = tr.insertCell(0);
-        td1.appendChild(isGlutenFreeCheckbox);
+        td1.appendChild(IsDoCheckbox);
 
         let td2 = tr.insertCell(1);
-        let textNode = document.createTextNode(item.description);
+        let textNode = document.createTextNode(item.name);
         td2.appendChild(textNode);
 
         let td3 = tr.insertCell(2);
@@ -121,5 +121,5 @@ function _displayItems(data) {
         td4.appendChild(deleteButton);
     });
 
-    tasksList = data;
+    tasks = data;
 }
