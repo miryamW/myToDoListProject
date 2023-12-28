@@ -2,11 +2,10 @@ using myToDoList.Interfaces;
 using Task=myToDoList.Models.Task;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
-using System;
+//using System.IO;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
-
+using System.Reflection;
 
 namespace myToDoList.Services
 {
@@ -29,14 +28,17 @@ public class TasksListService: ITasksListService
         private string fileName = "Task.json";
         public TasksListService()
         {
+            
             this.fileName = Path.Combine(/*webHost.ContentRootPath,*/ "Data", "Task.json");
-
+           
             using (var jsonFile = File.OpenText(fileName))
             {
-                tasks = JsonSerializer.Deserialize<List<Task>>(jsonFile.ReadToEnd(),
+               tasks = JsonSerializer.Deserialize<List<Task>>(jsonFile.ReadToEnd(),
                 new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReadCommentHandling = JsonCommentHandling.Skip,
+                     AllowTrailingCommas = true,
                 });
             }
         }

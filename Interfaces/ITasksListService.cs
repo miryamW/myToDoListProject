@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using myToDoList.Models;
+using Task =myToDoList.Models.Task;
 
 
 namespace myToDoList.Interfaces

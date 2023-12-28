@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "YKM3z+2B1GR0BFplq4dZek2mhZjzVshBwEvQ+EXxaUg=",
+  "Hash": "BexpgpVfkHUwWaWg+ZF1Y6szkCOELxGkEC4GFieV3Jk=",
   "Source": "myToDoList",
   "BasePath": "_content/myToDoList",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "myToDoList\\wwwroot",
+      "Source": "myToDoList",
+      "ContentRoot": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\",
+      "BasePath": "_content/myToDoList",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\css\\site.css",
+      "SourceId": "myToDoList",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\",
+      "BasePath": "_content/myToDoList",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\index.html",
+      "SourceId": "myToDoList",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\",
+      "BasePath": "_content/myToDoList",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\js\\site.js",
+      "SourceId": "myToDoList",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\",
+      "BasePath": "_content/myToDoList",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
+    }
+  ]
 }

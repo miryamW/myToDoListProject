@@ -58,3 +58,5 @@ C:\מרים וייל\ש.ב\CORE\myToDoListProject\obj\Debug\net6.0\refint\myToDo
 C:\מרים וייל\ש.ב\CORE\myToDoListProject\obj\Debug\net6.0\myToDoList.pdb
 C:\מרים וייל\ש.ב\CORE\myToDoListProject\obj\Debug\net6.0\myToDoList.genruntimeconfig.cache
 C:\מרים וייל\ש.ב\CORE\myToDoListProject\obj\Debug\net6.0\ref\myToDoList.dll
+C:\מרים וייל\ש.ב\CORE\myToDoListProject\bin\Debug\net6.0\myToDoList.staticwebassets.runtime.json
+C:\מרים וייל\ש.ב\CORE\myToDoListProject\bin\Debug\net6.0\Data\Task.json
