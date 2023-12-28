@@ -1,19 +1,15 @@
 {
   "Files": [
     {
-      "Id": "D:\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\css\\site.css",
+      "Id": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\data\\Task.json",
-      "PackagePath": "staticwebassets\\data\\Task.json"
-    },
-    {
-      "Id": "D:\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\index.html",
+      "Id": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "D:\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\js\\site.js",
+      "Id": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {

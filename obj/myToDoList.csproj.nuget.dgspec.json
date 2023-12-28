@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj": {}
+    "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj": {}
   },
   "projects": {
-    "D:\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj": {
+    "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
+        "projectUniqueName": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
         "projectName": "myToDoList",
-        "projectPath": "D:\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
+        "projectPath": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "D:\\ש.ב\\CORE\\myToDoListProject\\obj\\",
+        "outputPath": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
