@@ -1,5 +1,5 @@
-const uri = '/TaskList';
-let tasks = [];
+const uri = 'TasksList';
+let Tasks = [];
 
 function getItems() {
     fetch(uri)
@@ -9,11 +9,12 @@ function getItems() {
 }
 
 function addItem() {
-    const addNameTextbox = document.getElementById('add-name');
+    const adddescriptionTextbox = document.getElementById('add-description');
 
     const item = {
-        IsDone: false,
-        Description: addNameTextbox.value.trim()
+        id:0,
+        isDone: false,
+        description: adddescriptionTextbox.value.trim()
     };
 
     fetch(uri, {
@@ -27,25 +28,31 @@ function addItem() {
         .then(response => response.json())
         .then(() => {
             getItems();
-            addNameTextbox.value = '';
+            adddescriptionTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
 }
 
 function deleteItem(id) {
+    const item = {
+        id:0,
+        description: "string",
+        isDone: true,
+    };
     fetch(`${uri}/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
+            body:JSON.stringify(item)
         })
         .then(() => getItems())
         .catch(error => console.error('Unable to delete item.', error));
 }
 
 function displayEditForm(id) {
-    const item = tasks.find(item => item.id === id);
+    const item = Tasks.find(item => item.id === id);
 
-    document.getElementById('edit-name').value = item.name;
+    document.getElementById('edit-description').value = item.description;
     document.getElementById('edit-id').value = item.id;
-    document.getElementById('edit-IsDo').checked = item.IsDo;
+    document.getElementById('edit-isDone').checked = item.isDone;
     document.getElementById('editForm').style.display = 'block';
 }
 
@@ -53,8 +60,8 @@ function updateItem() {
     const itemId = document.getElementById('edit-id').value;
     const item = {
         id: parseInt(itemId, 10),
-        IsDone: document.getElementById('edit-IsDo').checked,
-        Description: document.getElementById('edit-name').value.trim()
+        isDone: document.getElementById('edit-isDone').checked,
+        description: document.getElementById('edit-description').value.trim()
     };
 
     fetch(`${uri}/${itemId}`, {
@@ -78,13 +85,13 @@ function closeInput() {
 }
 
 function _displayCount(itemCount) {
-    const name = (itemCount === 1) ? 'pizza' : 'Task kinds';
+    const description = (itemCount === 1) ? 'pizza' : 'Task kinds';
 
-    document.getElementById('counter').innerText = `${itemCount} ${name}`;
+    document.getElementById('counter').innerText = `${itemCount} ${description}`;
 }
 
 function _displayItems(data) {
-    const tBody = document.getElementById('tasks');
+    const tBody = document.getElementById('Tasks');
     tBody.innerHTML = '';
 
     _displayCount(data.length);
@@ -92,10 +99,10 @@ function _displayItems(data) {
     const button = document.createElement('button');
 
     data.forEach(item => {
-        let IsDoCheckbox = document.createElement('input');
-        IsDoCheckbox.type = 'checkbox';
-        IsDoCheckbox.disabled = true;
-        IsDoCheckbox.checked = item.isDone;
+        let isDoneCheckbox = document.createElement('input');
+        isDoneCheckbox.type = 'checkbox';
+        isDoneCheckbox.disabled = true;
+        isDoneCheckbox.checked = item.isDone;
 
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
@@ -108,10 +115,10 @@ function _displayItems(data) {
         let tr = tBody.insertRow();
 
         let td1 = tr.insertCell(0);
-        td1.appendChild(IsDoCheckbox);
+        td1.appendChild(isDoneCheckbox);
 
         let td2 = tr.insertCell(1);
-        let textNode = document.createTextNode(item.name);
+        let textNode = document.createTextNode(item.description);
         td2.appendChild(textNode);
 
         let td3 = tr.insertCell(2);
@@ -121,5 +128,5 @@ function _displayItems(data) {
         td4.appendChild(deleteButton);
     });
 
-    tasks = data;
+    Tasks = data;
 }

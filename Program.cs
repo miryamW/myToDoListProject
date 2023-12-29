@@ -1,9 +1,5 @@
-using myToDoList.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.DependencyInjection;
-using myToDoList.Services;
+using myTodoList.Service;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

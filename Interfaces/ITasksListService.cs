@@ -1,20 +1,16 @@
+using Task = myTodoList.Models.Task;
 using System.Collections.Generic;
-using Task =myToDoList.Models.Task;
 
-
-namespace myToDoList.Interfaces
+namespace myTodoList.Interface
 {
-    public  interface ITasksListService
+    public interface ITasksListService
     {
-       List<Task> GetAll();
-     
-       Task GetById(int id);
-     
-       int Add(Task newTask);
-
-       bool Update(int id, Task newTask);
-   
-       bool Delete(int id);
-      
+        List<Task> GetAll();
+        Task GetById(int id);
+        int Add(Task Task);
+        bool Delete(int id);
+        bool Update(int x,Task pizza);
+        // int Count {get;}
     }
 }
+

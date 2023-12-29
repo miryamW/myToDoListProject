@@ -3,15 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>TasksList CRUD</title>
+    <title>ToDoList CRUD</title>
     <link rel="stylesheet" href="css/site.css" />
 </head>
 
 <body>
-    <h1>TasksList CRUD</h1>
+    <h1>ToDoList CRUD</h1>
     <h3>Add</h3>
     <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
-        <input type="text" id="add-name" placeholder="New Task">
+        <input type="text" id="add-description" placeholder="New Task">
         <input type="submit" value="Add">
     </form>
 
@@ -19,8 +19,8 @@
         <h3>Edit</h3>
         <form action="javascript:void(0);" onsubmit="updateItem()">
             <input type="hidden" id="edit-id">
-            <input type="checkbox" id="edit-IsDo">
-            <input type="text" id="edit-name">
+            <input type="checkbox" id="edit-isDone">
+            <input type="text" id="edit-description">
             <input type="submit" value="Save">
             <a onclick="closeInput()" aria-label="Close">&#10006;</a>
         </form>
@@ -31,11 +31,11 @@
     <table>
         <tr>
             <th>Is the task accomplished?</th>
-            <th>Description</th>
+            <th>description</th>
             <th></th>
             <th></th>
         </tr>
-        <tbody id="tasks"></tbody>
+        <tbody id="Tasks"></tbody>
     </table>
 
     <script src="js/site.js" asp-append-version="true"></script>

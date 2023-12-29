@@ -1,21 +1,19 @@
-using myToDoList.Interfaces;
-using Task=myToDoList.Models.Task;
+using Task =myTodoList.Models.Task;
+using myTodoList.Interface;
 using System.Collections.Generic;
 using System.Linq;
-//using System.IO;
+using System.IO;
+using System;
 using System.Text.Json;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
-namespace myToDoList.Services
-{
+namespace myTodoList.Service;
 
 
 public class TasksListService: ITasksListService
 {
     // private List<Task> tasks;
 
-    // public TaskService()
+    // public TasksListService()
     // {
     //     tasks = new List<Task>{
     //         new Task {Id=1 , Name="aaa" , IsDo=true},
@@ -28,17 +26,14 @@ public class TasksListService: ITasksListService
         private string fileName = "Task.json";
         public TasksListService()
         {
-            
             this.fileName = Path.Combine(/*webHost.ContentRootPath,*/ "Data", "Task.json");
-           
+
             using (var jsonFile = File.OpenText(fileName))
             {
-               tasks = JsonSerializer.Deserialize<List<Task>>(jsonFile.ReadToEnd(),
+                tasks = JsonSerializer.Deserialize<List<Task>>(jsonFile.ReadToEnd(),
                 new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true,
-                    ReadCommentHandling = JsonCommentHandling.Skip,
-                     AllowTrailingCommas = true,
+                    PropertyNameCaseInsensitive = true
                 });
             }
         }
@@ -111,11 +106,10 @@ public class TasksListService: ITasksListService
 
 }
 
-public static class TaskUtils
+public static class TaskSListUtil
     {
         public static void AddTask(this IServiceCollection services)
         {
             services.AddSingleton<ITasksListService, TasksListService>();
         }
     }
-}
