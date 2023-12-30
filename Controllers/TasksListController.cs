@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Task = myTodoList.Models.Task;
 using myTodoList.Service;
 using myTodoList.Interface;
@@ -49,7 +49,7 @@ public class TasksListController : ControllerBase
         return NoContent();
     }
     [HttpDelete("{id}")]
-    public ActionResult Delete(int id, Task newTask)
+    public ActionResult Delete(int id)
     {
         var result = TasksListService.Delete(id);
         if (!result)

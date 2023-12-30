@@ -41,7 +41,7 @@ function deleteItem(id) {
     };
     fetch(`${uri}/${id}`, {
             method: 'DELETE',
-            body:JSON.stringify(item)
+            // body:JSON.stringify(item)
         })
         .then(() => getItems())
         .catch(error => console.error('Unable to delete item.', error));
@@ -85,7 +85,7 @@ function closeInput() {
 }
 
 function _displayCount(itemCount) {
-    const description = (itemCount === 1) ? 'pizza' : 'Task kinds';
+    const description = (itemCount === 1) ? 'task' : 'Task kinds';
 
     document.getElementById('counter').innerText = `${itemCount} ${description}`;
 }
