@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BLq0J6uWLyEWJeOy0pl8bgk2tvX+kEUXg7oXkI+LZC5h8t/9UwfrN5tock4ezgnxHwlWkZafvQBDxtmq6BscGg==",
+  "dgSpecHash": "ryoXkPsSaGNMLV+0QdNOGVHY3pxjJFxt5SWfQ4piS5+KTMuKtJ9guSCZ20pzIxNkamlIMQUN7uzd5PPFx/tvDw==",
   "success": true,
-  "projectFilePath": "C:\\מרים וייל\\ש.ב\\CORE\\myToDoListProject\\myToDoList.csproj",
+  "projectFilePath": "C:\\מרים וייל\\כל השאר\\c\\myToDoListProject\\myToDoList.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
