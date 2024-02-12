@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\les3.props" />
-</Project>
