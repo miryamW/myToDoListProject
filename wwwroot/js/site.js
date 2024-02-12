@@ -1,6 +1,14 @@
 const uri = 'TasksList';
 let Tasks = [];
-
+const token = localStorage.getItem('token');
+const tasksDiv = document.getElementById('To-Do-List-CRUD');
+const loginDiv = document.getElementById('Users-CRUD');
+if(token!=null)
+  tasksDiv.style.visibility = 'visible';
+else{
+  debbuger;
+ loginDiv.style.visibility = 'visible';
+}
 function getItems() {
     fetch(uri)
         .then(response => response.json())

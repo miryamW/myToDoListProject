@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\מרים וייל\\כל השאר\\c\\myToDoListProject\\myToDoList.csproj": {}
+    "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoList.csproj": {}
   },
   "projects": {
-    "C:\\מרים וייל\\כל השאר\\c\\myToDoListProject\\myToDoList.csproj": {
+    "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\מרים וייל\\כל השאר\\c\\myToDoListProject\\myToDoList.csproj",
+        "projectUniqueName": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoList.csproj",
         "projectName": "myToDoList",
-        "projectPath": "C:\\מרים וייל\\כל השאר\\c\\myToDoListProject\\myToDoList.csproj",
+        "projectPath": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoList.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\מרים וייל\\כל השאר\\c\\myToDoListProject\\obj\\",
+        "outputPath": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -22,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -30,8 +30,8 @@
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -42,12 +42,20 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.3.1, )"
             }
           },
           "imports": [
@@ -69,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23455.8\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23455.8/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

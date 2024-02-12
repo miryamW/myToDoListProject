@@ -2,6 +2,7 @@
 using Task = myTodoList.Models.Task;
 using myTodoList.Service;
 using myTodoList.Interface;
+using myTodoList.Models;
 
 namespace myTodoList.Controllers;
 
@@ -10,14 +11,16 @@ namespace myTodoList.Controllers;
 public class TasksListController : ControllerBase
 {
     ITasksListService TasksListService;
-    public TasksListController(ITasksListService TasksListService)
+    public int UserId{get;set;}
+    public TasksListController(ITasksListService TasksListService,IHttpContextAccessor httpContextAccessor)
     {
         this.TasksListService = TasksListService;
+        this.UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("id")?.Value);
     }
     [HttpGet]
     public ActionResult<List<Task>> Get()
     {
-        return TasksListService.GetAll();
+        return TasksListService.GetAll(this.UserId);
     }
 
     [HttpGet("{id}")]
