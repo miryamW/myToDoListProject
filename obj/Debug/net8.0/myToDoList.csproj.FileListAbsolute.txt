@@ -1,5 +1,3 @@
-C:\מרים וייל\תכנות יד\CORE\myToDoListProject\bin\Debug\net8.0\appsettings.Development.json
-C:\מרים וייל\תכנות יד\CORE\myToDoListProject\bin\Debug\net8.0\appsettings.json
 C:\מרים וייל\תכנות יד\CORE\myToDoListProject\bin\Debug\net8.0\Data\Task.json
 C:\מרים וייל\תכנות יד\CORE\myToDoListProject\bin\Debug\net8.0\myToDoList.staticwebassets.runtime.json
 C:\מרים וייל\תכנות יד\CORE\myToDoListProject\bin\Debug\net8.0\myToDoList.exe

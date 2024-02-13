@@ -14,7 +14,7 @@ public class UsersService : IUsersService
     private List<User> users;
     private User admin;
     private string fileUsersName = "User.json";
-    private string fileAdminName = "Admin.json";
+    private string fileAdminName = "Data/Admin.json";
 
     public UsersService()
     {

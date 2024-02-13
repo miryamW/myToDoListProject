@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Bzo9XW/wsO1kFtfOnJ1zBl2cW1bv/jo68P5mqRNofa8=",
+  "Hash": "AqKZUhB1vukxkfaMPEnVjuygHSGOnlTV9oPd+tNDUd4=",
   "Source": "myToDoList",
   "BasePath": "_content/myToDoList",
   "Mode": "Default",
@@ -55,25 +55,6 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\js\\login.js",
-      "SourceId": "myToDoList",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
-      "BasePath": "_content/myToDoList",
-      "RelativePath": "js/login.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\login.js"
-    },
-    {
       "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\js\\site.js",
       "SourceId": "myToDoList",
       "SourceType": "Discovered",
@@ -91,25 +72,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
-    },
-    {
-      "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\login.html",
-      "SourceId": "myToDoList",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
-      "BasePath": "_content/myToDoList",
-      "RelativePath": "login.html",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\login.html"
     }
   ]
 }

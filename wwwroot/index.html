@@ -38,8 +38,35 @@
             <tbody id="Tasks"></tbody>
         </table>
     </div>
-    <div id = "Users-CRUD" style="visibility: hidden;" >
-        
+    <div id="users-CRUD" style="visibility: hidden;">
+        <h1>Users CRUD</h1>
+        <h3>Add</h3>
+        <form action="javascript:void(0);" method="POST" onsubmit="addUser()">
+            <input type="text" id="add" placeholder="New Task">
+            <input type="submit" value="Add">
+        </form>
+
+        <div id="editForm-user">
+            <h3>Edit</h3>
+            <form action="javascript:void(0);" onsubmit="updateUser()">
+                <input type="hidden" id="edit-id-user">
+                <input type="text" id="edit-name">
+                <input type="text" id="edit-password">
+                <input type="submit" value="Save">
+                <a onclick="closeInput_user()" aria-label="Close">&#10006;</a>
+            </form>
+        </div>
+
+        <p id="counter-user"></p>
+        <table>
+            <tr>
+                <th>user id</th>
+                <th>user name</th>
+                <th>user password</th>
+                <th></th>
+            </tr>
+            <tbody id="Users"></tbody>
+        </table>
     </div>
     <div id = "login-CRUD" style="visibility:hidden;" >
         <form action="javascript:void(0);" method="POST" onsubmit="login()">
@@ -51,7 +78,7 @@
     </div>
     <script src="./js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
-        getItems();
+        checkgetItems();
     </script>
 </body>
 
