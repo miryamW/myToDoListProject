@@ -7,10 +7,13 @@ namespace myTodoList.Interface
     {
         List<User> GetAll();
         User GetById(int id);
-        int Add(User User);
+        int Add(User user);
         bool Delete(int id);
-        bool IsAdmin(User User);
-        bool Update(int x,User pizza);
+        bool IsAdmin(User user);
+        int GetAdminId();
+        bool Update(int id,User user);
+        User GetUser(User user);
+        
         // int Count {get;}
     }
 }

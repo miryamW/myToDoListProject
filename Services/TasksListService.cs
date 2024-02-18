@@ -47,15 +47,9 @@ public class TasksListService : ITasksListService
     public int Add(Task newTask)
     {
         if (tasks.Count == 0)
-
-        {
             newTask.Id = 1;
-        }
         else
-        {
             newTask.Id = tasks.Max(p => p.Id) + 1;
-        }
-
         tasks.Add(newTask);
         saveToFile();
         return newTask.Id;
@@ -79,7 +73,6 @@ public class TasksListService : ITasksListService
         return true;
     }
 
-
     public bool Delete(int id)
     {
         var existingTask = GetById(id);
@@ -95,7 +88,10 @@ public class TasksListService : ITasksListService
         return true;
     }
 
-
+    public void DeleteUserItems(int userId){
+        tasks = tasks.FindAll(t=>t.UserId!=userId);
+        saveToFile();
+    }
 
 }
 

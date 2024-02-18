@@ -13,7 +13,7 @@ namespace myTodoList.Service;
 public static class UserTokenService
 {
     private static SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ"));
-    private static string issuer = "https://fbi-demo.com";
+    private static string issuer = "https://toDoList.com";
     public static SecurityToken GetToken(List<Claim> claims) =>
       new JwtSecurityToken(
         issuer,

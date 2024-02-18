@@ -13,19 +13,19 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.myToDoList.props",
-      "PackagePath": "build\\myToDoList.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.myToDoListProject.props",
+      "PackagePath": "build\\myToDoListProject.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.myToDoList.props",
-      "PackagePath": "buildMultiTargeting\\myToDoList.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.myToDoListProject.props",
+      "PackagePath": "buildMultiTargeting\\myToDoListProject.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.myToDoList.props",
-      "PackagePath": "buildTransitive\\myToDoList.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.myToDoListProject.props",
+      "PackagePath": "buildTransitive\\myToDoListProject.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.myToDoList.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.myToDoListProject.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     }
   ],

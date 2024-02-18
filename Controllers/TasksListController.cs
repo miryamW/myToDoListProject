@@ -3,6 +3,7 @@ using Task = myTodoList.Models.Task;
 using myTodoList.Service;
 using myTodoList.Interface;
 using myTodoList.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace myTodoList.Controllers;
 
@@ -11,18 +12,21 @@ namespace myTodoList.Controllers;
 public class TasksListController : ControllerBase
 {
     ITasksListService TasksListService;
-    public int UserId{get;set;}
+    public int UserId {get;set;}
     public TasksListController(ITasksListService TasksListService,IHttpContextAccessor httpContextAccessor)
     {
         this.TasksListService = TasksListService;
         this.UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("id")?.Value);
     }
+
+    // [Authorize(Policy ="User")]
     [HttpGet]
     public ActionResult<List<Task>> Get()
     {
         return TasksListService.GetAll(this.UserId);
     }
 
+    [Authorize(Policy ="User")]
     [HttpGet("{id}")]
     public ActionResult<Task> Get(int id)
     {
@@ -32,18 +36,22 @@ public class TasksListController : ControllerBase
         return task;
     }
 
+    [Authorize(Policy ="User")]
     [HttpPost]
     public ActionResult Post(Task newTask)
     {
+        newTask.UserId = this.UserId;
         var newId = TasksListService.Add(newTask);
 
         return CreatedAtAction("Post",
             new { id = newId }, TasksListService.GetById(newId));
     }
 
+    [Authorize(Policy ="User")]
     [HttpPut("{id}")]
     public ActionResult Put(int id, Task newTask)
     {
+        newTask.UserId = this.UserId;
         var result = TasksListService.Update(id, newTask);
         if (!result)
         {
@@ -51,6 +59,8 @@ public class TasksListController : ControllerBase
         }
         return NoContent();
     }
+   
+    [Authorize(Policy ="User")]
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)
     {

@@ -1,27 +1,27 @@
 {
   "Version": 1,
-  "Hash": "AqKZUhB1vukxkfaMPEnVjuygHSGOnlTV9oPd+tNDUd4=",
-  "Source": "myToDoList",
-  "BasePath": "_content/myToDoList",
+  "Hash": "uxMuEWdHN3WOZFbYuxuusQ9WhxcAo1J38rljEcOZnTk=",
+  "Source": "myToDoListProject",
+  "BasePath": "_content/myToDoListProject",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "myToDoList\\wwwroot",
-      "Source": "myToDoList",
+      "Name": "myToDoListProject\\wwwroot",
+      "Source": "myToDoListProject",
       "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
-      "BasePath": "_content/myToDoList",
+      "BasePath": "_content/myToDoListProject",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
       "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\css\\site.css",
-      "SourceId": "myToDoList",
+      "SourceId": "myToDoListProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
-      "BasePath": "_content/myToDoList",
+      "BasePath": "_content/myToDoListProject",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -37,10 +37,10 @@
     },
     {
       "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\index.html",
-      "SourceId": "myToDoList",
+      "SourceId": "myToDoListProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
-      "BasePath": "_content/myToDoList",
+      "BasePath": "_content/myToDoListProject",
       "RelativePath": "index.html",
       "AssetKind": "All",
       "AssetMode": "All",
@@ -56,10 +56,10 @@
     },
     {
       "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\js\\site.js",
-      "SourceId": "myToDoList",
+      "SourceId": "myToDoListProject",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
-      "BasePath": "_content/myToDoList",
+      "BasePath": "_content/myToDoListProject",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
       "AssetMode": "All",

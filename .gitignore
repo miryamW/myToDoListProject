@@ -1,5 +1,6 @@
-.bin
-.obj
-.appsettings.development.json
-.appsettings.json.myToDoList.csproj
+bin
+obj
+appsettings.development.json
+appsettings.json.myToDoList.csproj
 .vscode
+.vs

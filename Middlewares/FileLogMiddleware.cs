@@ -6,7 +6,7 @@ public class FileLogMiddleware
     private readonly string logFilePath;
     private readonly RequestDelegate next;
 
-    public FileLogMiddleware(RequestDelegate next, string logFilePath )
+    public FileLogMiddleware(RequestDelegate next, string logFilePath)
     {
         this.next = next;
         this.logFilePath = logFilePath;
@@ -18,7 +18,7 @@ public class FileLogMiddleware
         sw.Start();
         await next(c);
         WriteLogToFile($"{c.Request.Path}.{c.Request.Method} took {sw.ElapsedMilliseconds}ms."
-            + $" User: {c.User?.FindFirst("userId")?.Value ?? "unknown"}");
+            + $" User: {c.User?.FindFirst("name")?.Value ?? "unknown"}");
     }   
      private void WriteLogToFile(string logMessage)
     {

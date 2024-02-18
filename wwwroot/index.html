@@ -3,19 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="376660673394-l0gh5l75qe2kgpfjlvh8b25nphv1clth.apps.googleusercontent.com">
     <title>ToDoList CRUD</title>
     <link rel="stylesheet" href="css/site.css" />
 </head>
-
 <body>
-    <div id="To-Do-List-CRUD" style="visibility: hidden;">
+    <div id="To-Do-List-CRUD" style="display: none;">
         <h1>ToDoList CRUD</h1>
         <h3>Add</h3>
         <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
             <input type="text" id="add-description" placeholder="New Task">
             <input type="submit" value="Add">
         </form>
-
         <div id="editForm">
             <h3>Edit</h3>
             <form action="javascript:void(0);" onsubmit="updateItem()">
@@ -26,7 +25,6 @@
                 <a onclick="closeInput()" aria-label="Close">&#10006;</a>
             </form>
         </div>
-
         <p id="counter"></p>
         <table>
             <tr>
@@ -37,50 +35,57 @@
             </tr>
             <tbody id="Tasks"></tbody>
         </table>
+        <br>
+        <button onclick="updateUserBySelf()">edit my user</button>
     </div>
-    <div id="users-CRUD" style="visibility: hidden;">
+    <div id="editForm-user" style="display: none;">
+        <h3>Edit</h3>
+        <form action="javascript:void(0);" onsubmit="updateUser()">
+            <input type="hidden" id="edit-id-user">
+            <input type="text" id="edit-name">
+            <input type="text" id="edit-password">
+            <input type="submit" value="Save">
+            <a onclick="closeInput_user()" aria-label="Close">&#10006;</a>
+        </form>
+    </div>
+    <div id="users-CRUD" style="display: none;">
         <h1>Users CRUD</h1>
         <h3>Add</h3>
         <form action="javascript:void(0);" method="POST" onsubmit="addUser()">
-            <input type="text" id="add" placeholder="New Task">
+            <input type="text" id="add-name" placeholder="userName">
+            <input type="text" id="add-password" placeholder="password">
             <input type="submit" value="Add">
         </form>
-
-        <div id="editForm-user">
-            <h3>Edit</h3>
-            <form action="javascript:void(0);" onsubmit="updateUser()">
-                <input type="hidden" id="edit-id-user">
-                <input type="text" id="edit-name">
-                <input type="text" id="edit-password">
-                <input type="submit" value="Save">
-                <a onclick="closeInput_user()" aria-label="Close">&#10006;</a>
-            </form>
-        </div>
 
         <p id="counter-user"></p>
         <table>
             <tr>
-                <th>user id</th>
-                <th>user name</th>
-                <th>user password</th>
+
+                <th>userName</th>
+                <th>password</th>
+                <th></th>
                 <th></th>
             </tr>
             <tbody id="Users"></tbody>
         </table>
     </div>
-    <div id = "login-CRUD" style="visibility:hidden;" >
+   
+    <div id="login-CRUD" style="display:none;">
+        <h1>Login</h1>
         <form action="javascript:void(0);" method="POST" onsubmit="login()">
-            <input type="text" id="id" placeholder="user id"/>
-            <input type="text" id="name" placeholder="user name"/>
-            <input type="text" id="password" placeholder="user password"/>
+            <input type="text" id="name" placeholder="userName" /><br><br>
+            <input type="password" id="password" placeholder="password" /><br><br>
             <input type="submit" value="Login">
+            <a href="">postman for Admin</a>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
         </form>
     </div>
+    <a style="display: none;" href="./users.html">for users list</a>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="./js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
         checkgetItems();
     </script>
 </body>
-
-
 </html>

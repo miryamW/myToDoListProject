@@ -7,33 +7,78 @@ let token = localStorage.getItem('token');
 const tasksDiv = document.getElementById('To-Do-List-CRUD');
 const loginDiv = document.getElementById('login-CRUD');
 const usersDiv = document.getElementById('users-CRUD');
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    const user = {
+        id: 0,
+        name: profile.getName(),
+        password: profile.getEmail()
+    };
+    fetch(uriLogin, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)
+    })
+        .then((response) => {
+            if (response.status == 200)
+                return response.json();
+            else
+                throw new Error();
+        })
+        .then((res) => {
+
+            localStorage.setItem('token', res)
+            checkgetItems();
+
+        })
+        .catch((error) => {
+            console.error('Unable to find this user.', error);
+            alert("this user is not exist, try again");
+        });
+}
+
 
 function checkgetItems() {
     token = localStorage.getItem('token');
     if (token != null) {
-        tasksDiv.style.visibility = 'visible';
-        loginDiv.style.visibility = 'hidden';
         getItems();
         getUsers();
     }
     else {
-        loginDiv.style.visibility = 'visible';
-        tasksDiv.style.visibility = 'hidden';
-        usersDiv.style.visibility = 'hidden';
-
+        loginDiv.style.display = 'block';
+        tasksDiv.style.display = 'none';
+        usersDiv.style.display = 'none';
     }
 }
-function getItems() {
-    fetch(uriTasks,{  method: 'Get',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization':`Bearer ${token}`
 
-    },})
+function getItems() {
+    fetch(uriTasks, {
+        method: 'Get',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+
+        },
+    })
         .then(response => response.json())
-        .then(data => _displayItems(data))
-        .catch(error => console.error('Unable to get items.', error));
+        .then((data) => {
+            loginDiv.style.display = 'none';
+            tasksDiv.style.display = 'block';
+            _displayItems(data);
+
+        })
+        .catch((error) => {
+            console.error('Unable to get items.', error);
+            loginDiv.style.display = 'block'
+        });
 }
 
 function addItem() {
@@ -42,7 +87,8 @@ function addItem() {
     const item = {
         id: 0,
         isDone: false,
-        description: adddescriptionTextbox.value.trim()
+        description: adddescriptionTextbox.value.trim(),
+        userId: 0
     };
 
     fetch(uriTasks, {
@@ -50,7 +96,7 @@ function addItem() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(item)
     })
@@ -68,7 +114,7 @@ function deleteItem(id) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         },
     })
         .then(() => getItems())
@@ -89,7 +135,8 @@ function updateItem() {
     const item = {
         id: parseInt(itemId, 10),
         isDone: document.getElementById('edit-isDone').checked,
-        description: document.getElementById('edit-description').value.trim()
+        description: document.getElementById('edit-description').value.trim(),
+        serId: 0
     };
 
     fetch(`${uriTasks}/${itemId}`, {
@@ -97,7 +144,7 @@ function updateItem() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(item)
     })
@@ -160,13 +207,32 @@ function _displayItems(data) {
     Tasks = data;
 }
 
-function login(){
-    const idTextBox = document.getElementById('id');
+function updateUserBySelf() {
+    fetch(`${uriUsers}/GetUser`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+        .then((response => response.json()))
+        .then((user) => {
+            document.getElementById('edit-id-user').value = user.id;
+            document.getElementById('edit-password').value = user.password;
+            document.getElementById('edit-name').value = user.name;
+            document.getElementById('editForm-user').style.display = 'block';
+        })
+        .catch(error => console.error('Unable to update user.', error));
+
+
+}
+
+function login() {
     const nameTextBox = document.getElementById('name');
     const passwordTextBox = document.getElementById('password');
-
     const user = {
-        id: parseInt(idTextBox.value.trim()),
+        id: 0,
         name: nameTextBox.value.trim(),
         password: passwordTextBox.value.trim()
     };
@@ -179,36 +245,55 @@ function login(){
         },
         body: JSON.stringify(user)
     })
-        .then(response => response.json())
+        .then((response) => {
+            if (response.status == 200)
+                return response.json();
+            else
+                throw new Error();
+        })
         .then((res) => {
-            localStorage.setItem('token',res)
-            idTextBox.value = '';
+
+            localStorage.setItem('token', res)
             nameTextBox.value = '';
             passwordTextBox.value = '';
             checkgetItems();
+
         })
-        .catch(error => console.error('Unable to find this user.', error));
+        .catch((error) => {
+            console.error('Unable to find this user.', error);
+            alert("this user is not exist, try again");
+            nameTextBox.value = '';
+            passwordTextBox.value = '';
+
+        });
 }
 
 function getUsers() {
-    fetch(uriUsers,{  method: 'Get',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization':`Bearer ${token}`
+    fetch(uriUsers, {
+        method: 'Get',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
 
-    },})
+        },
+    })
         .then(response => response.json())
-        .then(data => _displayUsers(data))
-        .catch(error => console.error('Unable to get items.', error));
+        .then((data) => {
+            loginDiv.style.display = 'none';
+            usersDiv.style.display = 'block'; 
+            _displayUsers(data);
+        })
+        .catch((error) => console.error('Unable to get users.', error));
 }
 
 function addUser() {
-    const addTextbox = document.getElementById('add');
+    const addNameTextbox = document.getElementById('add-name');
+    const addPasswordTextbox = document.getElementById('add-password');
     const user = {
         id: 0,
-        name: '',
-        password: addTextbox.value.trim()
+        name: addNameTextbox.value.trim(),
+        password: addPasswordTextbox.value.trim()
     };
 
     fetch(uriUsers, {
@@ -216,14 +301,15 @@ function addUser() {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(user)
     })
         .then(response => response.json())
         .then(() => {
             getUsers();
-            addTextbox.value = '';
+            addNameTextbox.value = '';
+            addPasswordTextbox.value = '';
         })
         .catch(error => console.error('Unable to add user.', error));
 }
@@ -234,40 +320,43 @@ function deleteUser(id) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         },
     })
-        .then(() => getItems_user())
+        .then(() => getUsers())
         .catch(error => console.error('Unable to delete user.', error));
 }
 
 function displayEditForm_user(id) {
+
     const user = Users.find(user => user.id === id);
 
     document.getElementById('edit-id-user').value = user.id;
     document.getElementById('edit-password').value = user.password;
     document.getElementById('edit-name').value = user.name;
-    document.getElementById('editForm').style.display = 'block';
+    document.getElementById('editForm-user').style.display = 'block';
 }
 
 function updateUser() {
-    const userId = document.getElementById('edit-id-user').value;
+    let userId = document.getElementById('edit-id-user').value;
+    // if (userId == "")
+    //     userId = document.getElementById('edit-self-id-user').value;
     const user = {
         id: parseInt(userId, 10),
         name: document.getElementById('edit-name').value.trim(),
         password: document.getElementById('edit-password').value.trim()
     };
 
-    fetch(`${uriUsers}/${itemId}`, {
+    fetch(`${uriUsers}/${userId}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Authorization':`Bearer ${token}`
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(user)
     })
-        .then(() => getItems())
+        .then(() => getUsers())
         .catch(error => console.error('Unable to update user.', error));
 
     closeInput_user();
@@ -277,6 +366,8 @@ function updateUser() {
 
 function closeInput_user() {
     document.getElementById('editForm-user').style.display = 'none';
+    document.getElementById('editForm-user-self').style.display = 'none';
+
 }
 
 function _displayCount_user(itemCount) {
@@ -285,7 +376,7 @@ function _displayCount_user(itemCount) {
 }
 
 function _displayUsers(data) {
-    usersDiv.style.visibility = 'visible';
+
     const tBody = document.getElementById('Users');
     tBody.innerHTML = '';
     _displayCount_user(data.length);
@@ -302,22 +393,22 @@ function _displayUsers(data) {
 
         let tr = tBody.insertRow();
 
-        let td1 = tr.insertCell(1);
+        let td1 = tr.insertCell(0);
         let textNode1 = document.createTextNode(user.name);
-        td2.appendChild(textNode1)
+        td1.appendChild(textNode1)
 
-        let td2 = tr.insertCell(2);
+        let td2 = tr.insertCell(1);
         let textNode = document.createTextNode(user.password);
         td2.appendChild(textNode);
 
-        let td3 = tr.insertCell(3);
+        let td3 = tr.insertCell(2);
         td3.appendChild(editButton);
 
-        let td4 = tr.insertCell(4);
+        let td4 = tr.insertCell(3);
         td4.appendChild(deleteButton);
     });
 
-    Users  = data;
+    Users = data;
 
 }
 

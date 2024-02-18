@@ -13,28 +13,29 @@ namespace myTodoList.Controllers;
 public class UsersController : ControllerBase
 {
     IUsersService usersService;
-    public UsersController(IUsersService usersService)
+    public int UserId{get;set;}
+
+    public UsersController(IUsersService usersService,IHttpContextAccessor httpContextAccessor)
     {
         this.usersService = usersService;
+        this.UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("id")?.Value);
     }
 
     [Authorize(Policy = "Admin")]
     [HttpGet]
-
-
     public ActionResult<List<User>> Get()
     {
         return usersService.GetAll();
     }
-    [Authorize(Policy = "Admin")]
-    [HttpGet("{id}")]
-    public ActionResult<User> Get(int id)
+  
+    [Authorize(Policy = "User")]
+    [Route("[action]")]
+    [HttpGet]
+    public ActionResult<User> GetUser()
     {
-        var task = usersService.GetById(id);
-        if (task == null)
-            return NotFound();
-        return task;
+        return usersService.GetById(this.UserId);
     }
+    
     [Authorize(Policy = "Admin")]
     [HttpPost]
     public ActionResult Post(User newUser)
@@ -45,7 +46,7 @@ public class UsersController : ControllerBase
             new { id = newId }, usersService.GetById(newId));
     }
 
-    [Authorize(Policy = "Admin")]
+    [Authorize(Policy ="User")]
     [HttpPut("{id}")]
     public ActionResult Put(int id, User newUser)
     {
@@ -69,61 +70,5 @@ public class UsersController : ControllerBase
         return NoContent();
     }
 
-
-
 }
-[ApiController]
-[Route("[controller]")]
-public class LoginController : ControllerBase
-{
-    IUsersService usersService;
-
-    public LoginController(IUsersService usersService)
-    {
-        this.usersService = usersService;
-    }
-
-    [HttpPost]
-    // [Route("[action]")]
-    public ActionResult<String> Login(User User)
-    {
-        if (usersService.IsAdmin(User))
-        {
-            var claims = new List<Claim>
-            {
-                new Claim("type", "Admin"),
-                new Claim("name",User.Name),
-                new Claim("id",User.Id.ToString())
-            };
-
-            var token = UserTokenService.GetToken(claims);
-
-            return new OkObjectResult(UserTokenService.WriteToken(token));
-        }
-        User current = usersService.GetAll().FirstOrDefault(u => u.Id == User.Id);
-        if (current != null)
-        {
-            {
-                var claims2 = new List<Claim>
-            {
-                new Claim("type", "User"),
-                new Claim("name",User.Name),
-                new Claim("id",User.Id.ToString())
-            };
-
-                var token2 = UserTokenService.GetToken(claims2);
-
-                return new OkObjectResult(UserTokenService.WriteToken(token2));
-            }
-        }
-        else 
-            return BadRequest();
-    }
-}
-
-
-
-
-
-
 

@@ -8,9 +8,10 @@ namespace myTodoList.Interface
     {
         List<Task> GetAll(int id);
         Task GetById(int id);
-        int Add(Task Task);
+        int Add(Task task);
         bool Delete(int id);
-        bool Update(int x,Task pizza);
+        bool Update(int id,Task task);
+        void DeleteUserItems(int userId);
         // int Count {get;}
     }
 }
