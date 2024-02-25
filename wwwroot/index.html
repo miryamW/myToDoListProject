@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="google-signin-client_id" content="376660673394-l0gh5l75qe2kgpfjlvh8b25nphv1clth.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="376660673394-7pjidu1s84mlotigahngia2c8v7uneuv.apps.googleusercontent.com">
     <title>ToDoList CRUD</title>
     <link rel="stylesheet" href="css/site.css" />
 </head>
+
 <body>
     <div id="To-Do-List-CRUD" style="display: none;">
         <h1>ToDoList CRUD</h1>
@@ -69,7 +70,7 @@
             <tbody id="Users"></tbody>
         </table>
     </div>
-   
+
     <div id="login-CRUD" style="display:none;">
         <h1>Login</h1>
         <form action="javascript:void(0);" method="POST" onsubmit="login()">
@@ -77,15 +78,23 @@
             <input type="password" id="password" placeholder="password" /><br><br>
             <input type="submit" value="Login">
             <a href="">postman for Admin</a>
-            <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
+            <div id="g_id_onload"
+            data-client_id="376660673394-7pjidu1s84mlotigahngia2c8v7uneuv.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse">
+       </div>
+       <div class="g_id_signin" data-type="standard"></div>
         </form>
+    
+       
     </div>
+      <body>
     <a style="display: none;" href="./users.html">for users list</a>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="./js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
         checkgetItems();
     </script>
+    
 </body>
+
 </html>

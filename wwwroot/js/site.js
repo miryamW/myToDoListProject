@@ -1,3 +1,4 @@
+
 const uriTasks = 'TasksList';
 const uriLogin = 'Login';
 const uriUsers = 'Users';
@@ -7,18 +8,16 @@ let token = localStorage.getItem('token');
 const tasksDiv = document.getElementById('To-Do-List-CRUD');
 const loginDiv = document.getElementById('login-CRUD');
 const usersDiv = document.getElementById('users-CRUD');
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    const user = {
-        id: 0,
-        name: profile.getName(),
-        password: profile.getEmail()
-    };
-    fetch(uriLogin, {
+  function handleCredentialResponse(response) {
+     // decodeJwtResponse() is a custom function defined by you
+     // to decode the credential response.
+     const responsePayload = decodeJwtResponse(response.credential);
+     let user = {
+        id:0,
+        name:responsePayload.given_name,
+        password:responsePayload.email
+     }
+     fetch(uriLogin, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -35,16 +34,25 @@ function onSignIn(googleUser) {
         .then((res) => {
 
             localStorage.setItem('token', res)
+            
             checkgetItems();
 
         })
         .catch((error) => {
             console.error('Unable to find this user.', error);
             alert("this user is not exist, try again");
+            
+
         });
-}
+  }
 
-
+  function decodeJwtResponse(jwt){
+   
+    const [header, payload, signature] = jwt.split('.');
+    const decodedPayload = JSON.parse(atob(payload.replace(/_/g, '/').replace(/-/g, '+')));
+    console.log(decodedPayload);
+    return decodedPayload;
+  }
 function checkgetItems() {
     token = localStorage.getItem('token');
     if (token != null) {
@@ -65,7 +73,6 @@ function getItems() {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
-
         },
     })
         .then(response => response.json())

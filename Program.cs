@@ -17,12 +17,11 @@ builder.Services.AddAuthentication(options =>
     {
         cfg.RequireHttpsMetadata = false;
         cfg.TokenValidationParameters = UserTokenService.GetTokenValidationParameters();
-    }) .AddGoogle(googleOptions =>
+    }).AddGoogle(googleOptions =>
     {
         googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
         googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
     });
-
 builder.Services.AddAuthorization(cfg =>
     {
         cfg.AddPolicy("Admin", policy => policy.RequireClaim("type", "Admin"));
@@ -33,7 +32,14 @@ builder.Services.AddControllers();
 builder.Services.AddTask();
 builder.Services.AddUser();
 builder.Services.AddHttpContextAccessor();
-
+ builder.Services.AddCors(options =>
+ {
+     options.AddDefaultPolicy(
+         builder =>
+         {        
+             builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+         });
+ });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddEndpointsApiExplorer();
@@ -67,7 +73,7 @@ var app = builder.Build();
 app.Map("/favicon.ico", (a) =>
     a.Run(async c => await Task.CompletedTask));
 
-app.UseConsoleLogMiddleware();
+//app.UseConsoleLogMiddleware();
 app.UseFileLogMiddleware("file.log");
 
 // Configure the HTTP request pipeline.
