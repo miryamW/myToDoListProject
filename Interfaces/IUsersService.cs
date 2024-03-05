@@ -9,8 +9,6 @@ namespace myTodoList.Interface
         User GetById(int id);
         int Add(User user);
         bool Delete(int id);
-        bool IsAdmin(User user);
-        int GetAdminId();
         bool Update(int id,User user);
         User GetUser(User user);
         

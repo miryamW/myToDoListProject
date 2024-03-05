@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-
 // Add services to the container.
 builder.Services.AddAuthentication(options =>
     {
@@ -32,14 +31,7 @@ builder.Services.AddControllers();
 builder.Services.AddTask();
 builder.Services.AddUser();
 builder.Services.AddHttpContextAccessor();
- builder.Services.AddCors(options =>
- {
-     options.AddDefaultPolicy(
-         builder =>
-         {        
-             builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-         });
- });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddEndpointsApiExplorer();
@@ -74,7 +66,7 @@ app.Map("/favicon.ico", (a) =>
     a.Run(async c => await Task.CompletedTask));
 
 //app.UseConsoleLogMiddleware();
-app.UseFileLogMiddleware("file.log");
+app.UseFileLogMiddleware("myfile.log");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -83,6 +75,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "myToDoList v1"));
 }
+
+  
+
 
 app.UseHttpsRedirection();
 app.UseDefaultFiles();

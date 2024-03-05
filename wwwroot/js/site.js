@@ -8,16 +8,17 @@ let token = localStorage.getItem('token');
 const tasksDiv = document.getElementById('To-Do-List-CRUD');
 const loginDiv = document.getElementById('login-CRUD');
 const usersDiv = document.getElementById('users-CRUD');
-  function handleCredentialResponse(response) {
-     // decodeJwtResponse() is a custom function defined by you
-     // to decode the credential response.
-     const responsePayload = decodeJwtResponse(response.credential);
-     let user = {
-        id:0,
-        name:responsePayload.given_name,
-        password:responsePayload.email
-     }
-     fetch(uriLogin, {
+
+function handleCredentialResponse(response) {
+    // decodeJwtResponse() is a custom function defined by you
+    // to decode the credential response.
+    const responsePayload = decodeJwtResponse(response.credential);
+    let user = {
+        id: 0,
+        name: responsePayload.given_name,
+        password: responsePayload.email
+    }
+    fetch(uriLogin, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -34,30 +35,31 @@ const usersDiv = document.getElementById('users-CRUD');
         .then((res) => {
 
             localStorage.setItem('token', res)
-            
+
             checkgetItems();
 
         })
         .catch((error) => {
             console.error('Unable to find this user.', error);
             alert("this user is not exist, try again");
-            
+
 
         });
-  }
+}
 
-  function decodeJwtResponse(jwt){
-   
+function decodeJwtResponse(jwt) {
+
     const [header, payload, signature] = jwt.split('.');
     const decodedPayload = JSON.parse(atob(payload.replace(/_/g, '/').replace(/-/g, '+')));
     console.log(decodedPayload);
     return decodedPayload;
-  }
+}
+
 function checkgetItems() {
     token = localStorage.getItem('token');
     if (token != null) {
         getItems();
-        getUsers();
+        ifGetUsers();
     }
     else {
         loginDiv.style.display = 'block';
@@ -84,6 +86,7 @@ function getItems() {
         })
         .catch((error) => {
             console.error('Unable to get items.', error);
+            tasksDiv.style.display = 'none'
             loginDiv.style.display = 'block'
         });
 }
@@ -241,7 +244,8 @@ function login() {
     const user = {
         id: 0,
         name: nameTextBox.value.trim(),
-        password: passwordTextBox.value.trim()
+        password: passwordTextBox.value.trim(),
+        userType: 0
     };
 
     fetch(uriLogin, {
@@ -274,6 +278,24 @@ function login() {
 
         });
 }
+function ifGetUsers() {
+    fetch(uriUsers, {
+        method: 'Get',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+
+        },
+    }).then(() => {
+const usersLink = document.getElementById('users-link');
+usersLink.style.display = 'block';
+        })
+        .catch((error) => console.error('Unable to get users.', error));
+}
+
+function addUser() {
+}
 
 function getUsers() {
     fetch(uriUsers, {
@@ -288,7 +310,7 @@ function getUsers() {
         .then(response => response.json())
         .then((data) => {
             loginDiv.style.display = 'none';
-            usersDiv.style.display = 'block'; 
+            usersDiv.style.display = 'block';
             _displayUsers(data);
         })
         .catch((error) => console.error('Unable to get users.', error));
@@ -300,7 +322,8 @@ function addUser() {
     const user = {
         id: 0,
         name: addNameTextbox.value.trim(),
-        password: addPasswordTextbox.value.trim()
+        password: addPasswordTextbox.value.trim(),
+        userType: document.getElementById('add-is-manager').checked.trim()
     };
 
     fetch(uriUsers, {
@@ -351,7 +374,8 @@ function updateUser() {
     const user = {
         id: parseInt(userId, 10),
         name: document.getElementById('edit-name').value.trim(),
-        password: document.getElementById('edit-password').value.trim()
+        password: document.getElementById('edit-password').value.trim(),
+        userType: document.getElementById('edit-is-manager').checked.trim()
     };
 
     fetch(`${uriUsers}/${userId}`, {

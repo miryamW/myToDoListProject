@@ -13,16 +13,13 @@ public class UsersService : IUsersService
 {
     private List<User> Users;
     private User admin;
-    private string fileUsersName;
-    private string fileAdminName;
+    private string fileName;
     ITasksListService tasksListService;
     public UsersService(ITasksListService tasksListService)
     {
         this.tasksListService = tasksListService;
-        this.fileUsersName = Path.Combine(/*webHost.ContentRootPath,*/ "Data", "User.json");
-        this.fileAdminName = Path.Combine(/*webHost.ContentRootPath,*/ "Data", "Admin.json");
-
-        using (var jsonFile = File.OpenText(fileUsersName))
+        this.fileName = Path.Combine(/*webHost.ContentRootPath,*/ "Data", "User.json");
+        using (var jsonFile = File.OpenText(fileName))
         {
             Users = JsonSerializer.Deserialize<List<User>>(jsonFile.ReadToEnd(),
             new JsonSerializerOptions
@@ -30,40 +27,24 @@ public class UsersService : IUsersService
                 PropertyNameCaseInsensitive = true
             });
 
-        }
-        using (var jsonFile = File.OpenText(fileAdminName))
-        {
-            admin = JsonSerializer.Deserialize<User>(jsonFile.ReadToEnd(),
-            new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-
+        
         }
     }
 
     private void saveToFile(string file)
     {
-        if (file == fileUsersName)
-            File.WriteAllText(file, JsonSerializer.Serialize(Users));
-        else
-            File.WriteAllText(file, JsonSerializer.Serialize(admin));
-
+        File.WriteAllText(file, JsonSerializer.Serialize(Users));
     }
 
     public List<User> GetAll()=>Users;
 
     public User GetUser(User user)
     {
-        if (this.IsAdmin(user))
-            return admin;
         return Users.Find(u => u.Name == user.Name && u.Password == user.Password);
     }
 
     public User GetById(int id)
     {
-        if (id == admin.Id)
-            return admin;
         return Users.FirstOrDefault(u => u.Id == id);
     }
 
@@ -74,7 +55,7 @@ public class UsersService : IUsersService
         else
             newUser.Id = Users.Max(p => p.Id) + 1;
         Users.Add(newUser);
-        saveToFile(fileUsersName);
+        saveToFile(fileName);
         return newUser.Id;
     }
 
@@ -86,20 +67,13 @@ public class UsersService : IUsersService
         var existingUser = GetById(id);
         if (existingUser == null)
             return false;
-        if (IsAdmin(existingUser))
-        {
-            admin = newUser;
-            saveToFile(fileAdminName);
-        }
-        else
-        {
-            var index = Users.IndexOf(existingUser);
-            if (index == -1)
-                return false;
+        var index = Users.IndexOf(existingUser);
+        if (index == -1)
+            return false;
 
-            Users[index] = newUser;
-            saveToFile(fileUsersName);
-        }
+        Users[index] = newUser;
+        saveToFile(fileName);
+        
         return true;
     }
 
@@ -115,21 +89,10 @@ public class UsersService : IUsersService
             return false;
 
         Users.RemoveAt(index);
-        saveToFile(fileUsersName);
+        saveToFile(fileName);
         return true;
     }
 
-    public bool IsAdmin(User user)
-    {
-        if (user.Name == admin.Name && user.Password == admin.Password)
-            return true;
-        return false;
-    }
-
-    public int GetAdminId()
-    {
-        return admin.Id;
-    }
 }
 public static class UsersListUtil
 {

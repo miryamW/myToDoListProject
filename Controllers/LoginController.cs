@@ -22,28 +22,29 @@ public class LoginController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<String> Login(User User)
+    public ActionResult<String> Login(User user)
     {
-        if (usersService.IsAdmin(User))
+         User current = usersService.GetUser(user);
+
+        if (current!.UserType == UserType.Manager)
         {       var claims = new List<Claim>
             {
                 new Claim("type", "Admin"),
-                new Claim("name",User.Name),
-                new Claim("id",usersService.GetAdminId().ToString())
+                new Claim("name",current.Name),
+                new Claim("id",current.Id.ToString())
             };
 
             var token = UserTokenService.GetToken(claims);
             return new OkObjectResult(UserTokenService.WriteToken(token));
         }
-        User current = usersService.GetAll().FirstOrDefault(u => u.Name == User.Name&&u.Password==User.Password);
         if (current != null)
         {
             {
                 var claims2 = new List<Claim>
             {
                 new Claim("type", "User"),
-                new Claim("name",User.Name),
-                new Claim("id",usersService.GetUser(User).Id.ToString())
+                new Claim("name",current.Name),
+                new Claim("id",current.Id.ToString())
             };
 
                 var token2 = UserTokenService.GetToken(claims2);

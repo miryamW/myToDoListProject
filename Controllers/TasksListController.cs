@@ -19,7 +19,7 @@ public class TasksListController : ControllerBase
         this.UserId = int.Parse(httpContextAccessor.HttpContext?.User?.FindFirst("id")?.Value);
     }
 
-    // [Authorize(Policy ="User")]
+    [Authorize(Policy ="User")]
     [HttpGet]
     public ActionResult<List<Task>> Get()
     {

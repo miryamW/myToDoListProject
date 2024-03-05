@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uxMuEWdHN3WOZFbYuxuusQ9WhxcAo1J38rljEcOZnTk=",
+  "Hash": "ZsnrEGW50Oh3U+iImYQgkQzY1EgoUWYqXQDY1yNHaxU=",
   "Source": "myToDoListProject",
   "BasePath": "_content/myToDoListProject",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\html\\users.html",
+      "SourceId": "myToDoListProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\",
+      "BasePath": "_content/myToDoListProject",
+      "RelativePath": "html/users.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\html\\users.html"
     },
     {
       "Identity": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\index.html",
