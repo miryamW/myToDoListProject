@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <div id="login-CRUD">
+    <h1>Login</h1>
+    <form action="javascript:void(0);" method="POST" onsubmit="login()">
+        <input type="text" id="name" placeholder="userName" /><br><br>
+        <input type="password" id="password" placeholder="password" /><br><br>
+        <input type="submit" value="Login">
+        <a href="https://crimson-meteor-239435.postman.co/collection/31258961-8a1ac38f-1f19-47a2-af31-9e0df6ebe61f?source=rip_html">
+          <img alt="Run in Postman" src="https://run.pstmn.io/button.svg">
+        </a>
+        <div id="g_id_onload"
+            data-client_id="376660673394-7pjidu1s84mlotigahngia2c8v7uneuv.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin" data-type="standard"></div>
+    </form>
+</div>
+</body>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="./js/site.js" asp-append-version="true"></script>
+</html>

@@ -66,7 +66,7 @@ app.Map("/favicon.ico", (a) =>
     a.Run(async c => await Task.CompletedTask));
 
 //app.UseConsoleLogMiddleware();
-app.UseFileLogMiddleware("myfile.log");
+app.UseFileLogMiddleware("file.log");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -82,6 +82,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseDefaultFiles();
 app.UseStaticFiles();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

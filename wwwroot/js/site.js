@@ -5,18 +5,17 @@ const uriUsers = 'Users';
 let Tasks = [];
 let Users = [];
 let token = localStorage.getItem('token');
-const tasksDiv = document.getElementById('To-Do-List-CRUD');
-const loginDiv = document.getElementById('login-CRUD');
-const usersDiv = document.getElementById('users-CRUD');
+// const tasksDiv = document.getElementById('To-Do-List-CRUD');
+// const loginDiv = document.getElementById('login-CRUD');
+// const usersDiv = document.getElementById('users-CRUD');
 
 function handleCredentialResponse(response) {
-    // decodeJwtResponse() is a custom function defined by you
-    // to decode the credential response.
     const responsePayload = decodeJwtResponse(response.credential);
     let user = {
         id: 0,
         name: responsePayload.given_name,
-        password: responsePayload.email
+        password: responsePayload.email,
+        userType: 0
     }
     fetch(uriLogin, {
         method: 'POST',
@@ -35,7 +34,8 @@ function handleCredentialResponse(response) {
         .then((res) => {
 
             localStorage.setItem('token', res)
-
+            location.href = './index.html'
+            console.log(location.href);
             checkgetItems();
 
         })
@@ -51,7 +51,6 @@ function decodeJwtResponse(jwt) {
 
     const [header, payload, signature] = jwt.split('.');
     const decodedPayload = JSON.parse(atob(payload.replace(/_/g, '/').replace(/-/g, '+')));
-    console.log(decodedPayload);
     return decodedPayload;
 }
 
@@ -62,9 +61,7 @@ function checkgetItems() {
         ifGetUsers();
     }
     else {
-        loginDiv.style.display = 'block';
-        tasksDiv.style.display = 'none';
-        usersDiv.style.display = 'none';
+        location.href = './login.html'
     }
 }
 
@@ -79,15 +76,13 @@ function getItems() {
     })
         .then(response => response.json())
         .then((data) => {
-            loginDiv.style.display = 'none';
-            tasksDiv.style.display = 'block';
             _displayItems(data);
 
         })
         .catch((error) => {
             console.error('Unable to get items.', error);
-            tasksDiv.style.display = 'none'
-            loginDiv.style.display = 'block'
+            alert("your details got expired, please login again")
+            location.href = './login.html'
         });
 }
 
@@ -115,7 +110,11 @@ function addItem() {
             getItems();
             adddescriptionTextbox.value = '';
         })
-        .catch(error => console.error('Unable to add item.', error));
+        .catch((error) => {
+            console.error('Unable to add item.', error);
+            alert("your details got expired, please login again")
+            location.href = './login.html'
+        });
 }
 
 function deleteItem(id) {
@@ -128,7 +127,12 @@ function deleteItem(id) {
         },
     })
         .then(() => getItems())
-        .catch(error => console.error('Unable to delete item.', error));
+        .catch((error) => {
+            console.error('Unable to delete item.', error)
+            alert("your details got expired, please login again")
+            location.href = './login.html'
+        }
+        );
 }
 
 function displayEditForm(id) {
@@ -159,7 +163,11 @@ function updateItem() {
         body: JSON.stringify(item)
     })
         .then(() => getItems())
-        .catch(error => console.error('Unable to update item.', error));
+        .catch((error) => {
+            console.error('Unable to update item.', error)
+            alert("your details got expired, please login again")
+            location.href = './login.html'
+        });
 
     closeInput();
 
@@ -233,7 +241,11 @@ function updateUserBySelf() {
             document.getElementById('edit-name').value = user.name;
             document.getElementById('editForm-user').style.display = 'block';
         })
-        .catch(error => console.error('Unable to update user.', error));
+        .catch((error) => {
+            console.error('Unable to update user.', error);
+            alert("your details got expired, please login again")
+            location.href = './login.html'
+        });
 
 
 }
@@ -267,6 +279,7 @@ function login() {
             localStorage.setItem('token', res)
             nameTextBox.value = '';
             passwordTextBox.value = '';
+            location.href = './index.html'
             checkgetItems();
 
         })
@@ -278,6 +291,7 @@ function login() {
 
         });
 }
+
 function ifGetUsers() {
     fetch(uriUsers, {
         method: 'Get',
@@ -287,10 +301,12 @@ function ifGetUsers() {
             'Authorization': `Bearer ${token}`
 
         },
-    }).then(() => {
-const usersLink = document.getElementById('users-link');
-usersLink.style.display = 'block';
-        })
+    }).then((res) => {
+        if (res.status == 200) {
+            const usersLink = document.getElementById('users-link');
+            usersLink.style.display = 'block';
+        }
+    })
         .catch((error) => console.error('Unable to get users.', error));
 }
 
@@ -304,13 +320,10 @@ function getUsers() {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
-
         },
     })
         .then(response => response.json())
         .then((data) => {
-            loginDiv.style.display = 'none';
-            usersDiv.style.display = 'block';
             _displayUsers(data);
         })
         .catch((error) => console.error('Unable to get users.', error));
@@ -319,13 +332,16 @@ function getUsers() {
 function addUser() {
     const addNameTextbox = document.getElementById('add-name');
     const addPasswordTextbox = document.getElementById('add-password');
+    let userType = 0;
+    if (document.getElementById('add-is-manager').checked)
+        userType = 1;
     const user = {
         id: 0,
         name: addNameTextbox.value.trim(),
         password: addPasswordTextbox.value.trim(),
-        userType: document.getElementById('add-is-manager').checked.trim()
+        userType: userType
     };
-
+    console.log(user);
     fetch(uriUsers, {
         method: 'POST',
         headers: {
@@ -364,18 +380,20 @@ function displayEditForm_user(id) {
     document.getElementById('edit-id-user').value = user.id;
     document.getElementById('edit-password').value = user.password;
     document.getElementById('edit-name').value = user.name;
+    document.getElementById('edit-is-manager').checked = user.userType==1 ;
     document.getElementById('editForm-user').style.display = 'block';
 }
 
 function updateUser() {
     let userId = document.getElementById('edit-id-user').value;
-    // if (userId == "")
-    //     userId = document.getElementById('edit-self-id-user').value;
+    let userType = 0;
+    if (document.getElementById('edit-is-manager').checked)
+        userType = 1;
     const user = {
         id: parseInt(userId, 10),
         name: document.getElementById('edit-name').value.trim(),
         password: document.getElementById('edit-password').value.trim(),
-        userType: document.getElementById('edit-is-manager').checked.trim()
+        userType: userType
     };
 
     fetch(`${uriUsers}/${userId}`, {
@@ -397,8 +415,6 @@ function updateUser() {
 
 function closeInput_user() {
     document.getElementById('editForm-user').style.display = 'none';
-    document.getElementById('editForm-user-self').style.display = 'none';
-
 }
 
 function _displayCount_user(itemCount) {

@@ -5,16 +5,20 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\html\\users.html",
-      "PackagePath": "staticwebassets\\html\\users.html"
-    },
-    {
       "Id": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
       "Id": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\login.html",
+      "PackagePath": "staticwebassets\\login.html"
+    },
+    {
+      "Id": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\wwwroot\\users.html",
+      "PackagePath": "staticwebassets\\users.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.myToDoListProject.props",

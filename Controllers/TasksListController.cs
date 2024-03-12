@@ -30,7 +30,7 @@ public class TasksListController : ControllerBase
     [HttpGet("{id}")]
     public ActionResult<Task> Get(int id)
     {
-        var task = TasksListService.GetById(id);
+        var task = TasksListService.GetById(this.UserId,id);
         if (task == null)
             return NotFound();
         return task;
@@ -44,7 +44,7 @@ public class TasksListController : ControllerBase
         var newId = TasksListService.Add(newTask);
 
         return CreatedAtAction("Post",
-            new { id = newId }, TasksListService.GetById(newId));
+            new { id = newId }, TasksListService.GetById(this.UserId,newId));
     }
 
     [Authorize(Policy ="User")]
@@ -52,7 +52,7 @@ public class TasksListController : ControllerBase
     public ActionResult Put(int id, Task newTask)
     {
         newTask.UserId = this.UserId;
-        var result = TasksListService.Update(id, newTask);
+        var result = TasksListService.Update(this.UserId,id, newTask);
         if (!result)
         {
             return BadRequest();
@@ -64,7 +64,7 @@ public class TasksListController : ControllerBase
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)
     {
-        var result = TasksListService.Delete(id);
+        var result = TasksListService.Delete(this.UserId,id);
         if (!result)
         {
             return BadRequest();

@@ -39,9 +39,12 @@ public class TasksListService : ITasksListService
         return tasks.FindAll(t => t.UserId == userId);
     }
 
-    public Task GetById(int id)
+    public Task GetById(int userId,int id)
     {
-        return tasks.FirstOrDefault(p => p.Id == id);
+        Task task = tasks.FirstOrDefault(p => p.Id == id);
+        if(task.UserId==userId)
+            return task;
+        return null;
     }
 
     public int Add(Task newTask)
@@ -55,12 +58,12 @@ public class TasksListService : ITasksListService
         return newTask.Id;
     }
 
-    public bool Update(int id, Task newTask)
+    public bool Update(int userId,int id, Task newTask)
     {
         if (id != newTask.Id)
             return false;
 
-        var existingTask = GetById(id);
+        var existingTask = GetById(userId,id);
         if (existingTask == null)
             return false;
 
@@ -73,9 +76,9 @@ public class TasksListService : ITasksListService
         return true;
     }
 
-    public bool Delete(int id)
+    public bool Delete(int userId,int id)
     {
-        var existingTask = GetById(id);
+        var existingTask = GetById(userId,id);
         if (existingTask == null)
             return false;
 
