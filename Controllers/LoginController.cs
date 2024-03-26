@@ -4,34 +4,36 @@ using myTodoList.Service;
 using myTodoList.Interface;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using  System.IdentityModel.Tokens.Jwt;
-
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 
 
 namespace myTodoList.Controllers;
-
 [ApiController]
 [Route("[controller]")]
+
 public class LoginController : ControllerBase
 {
     IUsersService usersService;
 
-    public LoginController(IUsersService usersService)
+    public LoginController(IUsersService usersService, IHttpContextAccessor httpContextAccessor)
     {
         this.usersService = usersService;
     }
-
     [HttpPost]
     public ActionResult<String> Login(User user)
     {
-         User current = usersService.GetUser(user);
-
-        if (current!.UserType == UserType.Manager)
-        {       var claims = new List<Claim>
+        User current = usersService.GetUser(user);
+        if(current == null)
+            return BadRequest();
+        if (current?.UserType == UserType.Manager)
+        {
+            var claims = new List<Claim>
             {
-                new Claim("type", "Admin"),
-                new Claim("name",current.Name),
-                new Claim("id",current.Id.ToString())
+                new("type", "Admin"),
+                new("name",current.Name!),
+                new("id",current.Id.ToString())
             };
 
             var token = UserTokenService.GetToken(claims);
@@ -43,7 +45,7 @@ public class LoginController : ControllerBase
                 var claims2 = new List<Claim>
             {
                 new Claim("type", "User"),
-                new Claim("name",current.Name),
+                new Claim("name",current.Name!),
                 new Claim("id",current.Id.ToString())
             };
 
@@ -52,16 +54,11 @@ public class LoginController : ControllerBase
                 return new OkObjectResult(UserTokenService.WriteToken(token2));
             }
         }
-        else 
+        else
             return BadRequest();
     }
-  
-
+ 
 }
 
 
-
-
-
-
-
+   
