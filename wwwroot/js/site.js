@@ -10,7 +10,6 @@ function getItems() {
 
 function addItem() {
     const addNameTextbox = document.getElementById('add-name');
-
     const item = {
         isGlutenFree: false,
         name: addNameTextbox.value.trim()
