@@ -1114,11 +1114,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoListProject.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\myToDoListProject\\myToDoListProject.csproj",
       "projectName": "myToDoListProject",
-      "projectPath": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoListProject.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\myToDoListProject\\myToDoListProject.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\myToDoListProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -48,12 +48,12 @@ const login = (name, password) => {
         });
 }
 
-const handleCredentialResponse = (response) => {
+function handleCredentialResponse  (response)  {
     const responsePayload = decodeJwtResponse(response.credential);
     login(responsePayload.given_name,responsePayload.email)   
 }
 
-const decodeJwtResponse = (jwt) => {
+function decodeJwtResponse (jwt)  {
     const [header, payload, signature] = jwt.split('.');
     const decodedPayload = JSON.parse(atob(payload.replace(/_/g, '/').replace(/-/g, '+')));
     return decodedPayload;

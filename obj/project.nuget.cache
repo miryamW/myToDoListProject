@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+xN24hfA5+y6FEeD53rWnGkxqbNuHK9bv/vwSURn4wxtZWSNLaKjTiGWrzyFasi5NDGUV6ZABPHGpN6r1MI0pA==",
+  "dgSpecHash": "cUphm4xRzMdwm4KUDwslqBFjYt9kva8wv1IHq10DYdnAy8vpF2x5qFHTpQI4YAhwOUXl0Wjks8QhD+RD/hGCeQ==",
   "success": true,
-  "projectFilePath": "C:\\מרים וייל\\תכנות יד\\CORE\\myToDoListProject\\myToDoListProject.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\myToDoListProject\\myToDoListProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.2\\microsoft.aspnetcore.authentication.google.8.0.2.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.4\\microsoft.aspnetcore.authentication.jwtbearer.5.0.4.nupkg.sha512",
