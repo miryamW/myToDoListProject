@@ -19,7 +19,7 @@ public static class UserTokenService
         issuer,
         issuer,
         claims,
-        expires: DateTime.Now.AddMinutes(1.0),
+        expires: DateTime.Now.AddMinutes(30.0),
         signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
       );
 
