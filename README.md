@@ -87,5 +87,4 @@ ASP.NET Core
 
 ---
 
-Feel free to customize this README to include any additional information specific to your project. If you have any questions or need further assistance, don't hesitate to ask!
 
