@@ -28,7 +28,7 @@ The API should now be running locally and accessible at https://localhost:5001.
 To use the API endpoints, you need to authenticate with JWT tokens. Use the /api/auth/login endpoint to obtain a token by providing your credentials.
 
 ```bash
-POST /api/auth/login
+POST /Login
 Content-Type: application/json
 
 {
@@ -59,9 +59,6 @@ PUT /Users/{id}: Update an existing user.
 
 DELETE /Users/{id}: Delete a user.
 
-### For login:
-
-POST /Login: login with username & password.
 
 
 ### Contributing
